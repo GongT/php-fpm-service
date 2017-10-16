@@ -15,4 +15,5 @@ package-lock.json
 !.*ignore
 !.gitinclude
 !.babelrc
+.micro-build/php-install-all.sh
 ### <<< END MICRO-BUILD SECTION

@@ -1,3 +1,5 @@
 #!/bin/sh
 
-php-fpm -F -R -O
+update-resolve
+
+exec php-fpm -F -R -O

@@ -25,3 +25,5 @@ build.config.ts
 !.micro-build/docker/plugins
 !.babelrc
 ### <<< END MICRO-BUILD SECTION
+
+!.micro-build/php-install-all.sh
