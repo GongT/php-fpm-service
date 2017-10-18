@@ -20,6 +20,7 @@ const projectName = 'php-fpm';
 build.baseImage('php', 'fpm-alpine');
 build.projectName(projectName);
 build.domainName(projectName + '.' + JsonEnv.baseDomainName);
+build.systemInstall('git', 'diffutils', 'imagemagick');
 
 build.noDataCopy();
 build.forceLocalDns();
@@ -43,7 +44,7 @@ build.disablePlugin(EPlugins.jenv);
 build.volume('/data', '/host/data');
 build.volume('/var/run', '/host/var/run');
 
-const extra = require(__dirname + '/create.js');
+const extra = require(__dirname + '/build/create.js').default;
 if (extra) {
 	helper.createTextFile(extra).save('.micro-build/php-install-all.sh');
 	build.appendDockerFileContent(`COPY .micro-build/php-install-all.sh /

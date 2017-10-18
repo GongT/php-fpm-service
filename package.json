@@ -1,14 +1,13 @@
 {
-  "name": "php-fpm",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "microbuild build",
-    "service": "microbuild control"
-  },
-  "author": "",
-  "license": "ISC",
-  "private": true
+	"name": "php-fpm",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {},
+	"author": "",
+	"license": "ISC",
+	"private": true,
+	"dependencies": {
+		"@types/node": "^8.0.41"
+	}
 }

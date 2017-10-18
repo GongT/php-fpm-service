@@ -1,16 +1,15 @@
-const nproc = require('os').cpus().length;
+import {cpus} from "os";
+import extensions from "./config";
 
-if (!JsonEnv.php.extensions || !JsonEnv.php.extensions.length) {
-	return;
-}
+const nproc = cpus().length;
 
-const configs = [];
-const installs = [];
-const librarys = [];
-const pecls = [];
-const sources = [];
+const configs: string[] = [];
+const installs: string[] = [];
+const librarys: string[] = [];
+const pecls: string[] = [];
+const sources: string[] = [];
 
-for (const {type, name, configure, dependencies, libraries} of JsonEnv.php.extensions) {
+for (const {type, name, configure, dependencies, libraries} of extensions) {
 	if (dependencies && dependencies.length) {
 		installs.push(...dependencies);
 	}
@@ -45,7 +44,7 @@ for (const {type, name, configure, dependencies, libraries} of JsonEnv.php.exten
 	}
 }
 
-const prependCommands = [
+const prependCommands: string[] = [
 	'set -e', 'update-alpine', 'update-resolve',
 ];
 prependCommands.push(`
@@ -70,7 +69,7 @@ if (pecls.length) {
 	installs.push('autoconf', 'g++', 'gcc', 'make');
 }
 
-const installPkgs = [].concat(installs, librarys);
+const installPkgs: string[] = [].concat(installs, librarys);
 
 const installCommands = ['apk update'];
 if (installPkgs.length) {
@@ -99,7 +98,7 @@ installCommands.push('docker-php-source delete');
 installCommands.push('rm -f /tmp/error.log');
 installCommands.push('php-fpm -t');
 
-module.exports = [].concat(prependCommands, installCommands.map(e => `cmd_run ${e}`)).join('\n');
+export default [].concat(prependCommands, installCommands.map(e => `cmd_run ${e}`)).join('\n');
 
 function toArray(s) {
 	return s.split(/\n/).map(e => e.trim()).filter(e => e);
