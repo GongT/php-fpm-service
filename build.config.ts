@@ -42,6 +42,7 @@ build.shellCommand('/bin/sh', '-c');
 build.disablePlugin(EPlugins.jenv);
 
 build.volume('/data/services', '/data/services');
+build.volume('/data/contents', '/data/contents');
 build.volume('/var/run', '/host/var/run');
 
 const extra = require(__dirname + '/build/create.js').default;
