@@ -55,5 +55,6 @@ RUN sh /php-install-all.sh`);
 build.appendDockerFileContent(`COPY config /data/config`);
 build.appendDockerFileContent(`COPY scripts /data/scripts`);
 build.appendDockerFileContent(`
-RUN ln -s /data/config/php.ini /usr/local/etc/php/php.ini \\
+RUN ln -s /data/config/php.ini /usr/local/etc/php/php.ini\\
+ ln -s /data/config/php-fpm-www.conf /usr/local/etc/php-fpm.d/zz-www.conf\\
  && sed -i s/www-data/root/g /usr/local/etc/php-fpm.d/www.conf`);
