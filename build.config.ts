@@ -57,5 +57,5 @@ build.appendDockerFileContent(`COPY config /data/config`);
 build.appendDockerFileContent(`COPY scripts /data/scripts`);
 build.appendDockerFileContent(`
 RUN ln -s /data/config/php.ini /usr/local/etc/php/php.ini\\
- ln -s /data/config/php-fpm-www.conf /usr/local/etc/php-fpm.d/zz-www.conf\\
+ && ln -s /data/config/php-fpm-www.conf /usr/local/etc/php-fpm.d/zz-www.edit.conf\\
  && sed -i s/www-data/root/g /usr/local/etc/php-fpm.d/www.conf`);
