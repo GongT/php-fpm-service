@@ -41,8 +41,14 @@ build.shellCommand('/bin/sh', '-c');
 
 build.disablePlugin(EPlugins.jenv);
 
+const {dirname} = require('path');
+if (dirname(__dirname) !== '/data/services') {
+	build.volume(dirname(__dirname), dirname(__dirname));
+}
 build.volume('/data/services', '/data/services');
-build.volume('/data/contents', '/data/contents');
+if (require('fs').existsSync('/data/contents') || !JsonEnv.isDebug) {
+	build.volume('/data/contents', '/data/contents');
+}
 build.volume('/var/run', '/host/var/run');
 
 const extra = require(__dirname + '/build/create.js').default;
