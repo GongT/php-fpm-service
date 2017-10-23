@@ -64,4 +64,6 @@ build.appendDockerFileContent(`COPY scripts /data/scripts`);
 build.appendDockerFileContent(`
 RUN ln -s /data/config/php.ini /usr/local/etc/php/php.ini\\
  && ln -s /data/config/php-fpm-www.conf /usr/local/etc/php-fpm.d/zz-www.edit.conf\\
+ && mkdir -p /opt/modules\\
+ && mv /usr/local/lib/php/extensions/*/xdebug.so /opt/modules\\
  && sed -i s/www-data/root/g /usr/local/etc/php-fpm.d/www.conf`);

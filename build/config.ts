@@ -4,9 +4,15 @@ export interface ExtDef {
 	configure?: string;
 	dependencies?: string[];
 	libraries?: string[];
+	enable?: boolean;
 }
 
 const extensions: ExtDef[] = [
+	{
+		"type": "pecl",
+		"name": "xdebug",
+		"enable": false,
+	},
 	{
 		"type": "source",
 		"name": "gd",

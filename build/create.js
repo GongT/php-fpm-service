@@ -7,8 +7,9 @@ const configs = [];
 const installs = [];
 const librarys = [];
 const pecls = [];
+const peclEnable = [];
 const sources = [];
-for (const { type, name, configure, dependencies, libraries } of config_1.default) {
+for (const { type, name, configure, dependencies, libraries, enable } of config_1.default) {
     if (dependencies && dependencies.length) {
         installs.push(...dependencies);
     }
@@ -38,6 +39,14 @@ for (const { type, name, configure, dependencies, libraries } of config_1.defaul
         }
         else {
             pecls.push(name);
+        }
+        if (enable !== false) {
+            if (Array.isArray(name)) {
+                peclEnable.push(...name);
+            }
+            else {
+                peclEnable.push(name);
+            }
         }
     }
     else {
@@ -75,7 +84,7 @@ if (installPkgs.length) {
 installCommands.push('docker-php-source extract');
 if (pecls.length) {
     installCommands.push(`pecl install ${pecls.map(s).join(' ')}`);
-    installCommands.push(`docker-php-ext-enable ${pecls.map(s).join(' ')}`);
+    installCommands.push(`docker-php-ext-enable ${peclEnable.map(s).join(' ')}`);
 }
 if (configs.length) {
     installCommands.push(...configs);

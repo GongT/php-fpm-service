@@ -2,6 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const extensions = [
     {
+        "type": "pecl",
+        "name": "xdebug",
+        "enable": false,
+    },
+    {
         "type": "source",
         "name": "gd",
         "configure": "--with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/",

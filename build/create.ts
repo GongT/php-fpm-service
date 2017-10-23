@@ -7,9 +7,10 @@ const configs: string[] = [];
 const installs: string[] = [];
 const librarys: string[] = [];
 const pecls: string[] = [];
+const peclEnable: string[] = [];
 const sources: string[] = [];
 
-for (const {type, name, configure, dependencies, libraries} of extensions) {
+for (const {type, name, configure, dependencies, libraries, enable} of extensions) {
 	if (dependencies && dependencies.length) {
 		installs.push(...dependencies);
 	}
@@ -38,6 +39,13 @@ for (const {type, name, configure, dependencies, libraries} of extensions) {
 			pecls.push(...name);
 		} else {
 			pecls.push(name);
+		}
+		if (enable !== false) {
+			if (Array.isArray(name)) {
+				peclEnable.push(...name);
+			} else {
+				peclEnable.push(name);
+			}
 		}
 	} else {
 		throw new TypeError('unknown extension type: ' + type);
@@ -79,7 +87,7 @@ installCommands.push('docker-php-source extract');
 
 if (pecls.length) {
 	installCommands.push(`pecl install ${pecls.map(s).join(' ')}`);
-	installCommands.push(`docker-php-ext-enable ${pecls.map(s).join(' ')}`);
+	installCommands.push(`docker-php-ext-enable ${peclEnable.map(s).join(' ')}`);
 }
 
 if (configs.length) {
