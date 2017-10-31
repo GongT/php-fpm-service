@@ -7,7 +7,7 @@ const extensions = [
         "enable": false,
     },
     {
-        "type": "pecl",
+        "type": "source",
         "name": "pdo_mysql",
         "enable": false,
     },
