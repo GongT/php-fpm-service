@@ -15,6 +15,11 @@ const extensions: ExtDef[] = [
 	},
 	{
 		"type": "source",
+		"name": "pdo_mysql",
+		"enable": false,
+	},
+	{
+		"type": "source",
 		"name": "gd",
 		"configure": "--with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/",
 		"dependencies": ["libpng-dev", "libjpeg-turbo-dev", "libwebp-dev", "freetype-dev"],

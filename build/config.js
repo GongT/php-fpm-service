@@ -7,6 +7,11 @@ const extensions = [
         "enable": false,
     },
     {
+        "type": "pecl",
+        "name": "pdo_mysql",
+        "enable": false,
+    },
+    {
         "type": "source",
         "name": "gd",
         "configure": "--with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/",
